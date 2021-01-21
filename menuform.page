@@ -1,0 +1,26 @@
+<apex:page controller="menuform" sidebar="false" id="pg1" showHeader="true">
+    <apex:form id="frm">
+        <script type= "text/javascript">
+        function fieldalert(){
+            if(document.getElementById('{!$Component.pg.frm.bl1.sec1.nm}').value==''){
+                alert("Please enter your Name in menu Name field");
+                //return false;
+            }
+            else{
+                alert("Are you sure?");
+            }
+        }    
+        </script>
+        <apex:pageBlock id="bl1">
+            <apex:pageBlockSection id="sec1" columns="1" title="ENTER YOUR DETAILS HERE" collapsible="false">
+                <apex:inputField value="{!mList.Item_Name__c}" id="nm"/>
+                <apex:inputField value="{!mList.Item_Type__c}" id="typ"/>
+                <apex:inputField value="{!mList.Price__c}" id="prc"/>
+                <apex:inputField value="{!mList.Item_Category__c}" id="ctgr"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="Bottom">
+                <apex:commandButton action="{!create}" value="Create" onclick="fieldalert()"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

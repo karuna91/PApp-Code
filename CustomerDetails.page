@@ -1,0 +1,19 @@
+<apex:page sidebar="false" showHeader="true" controller="Controller_CustomerDetails">
+    <apex:form >
+        <!--<script type="text/javascript">
+        window.onload = function() {
+            window.open('http://www.google.com','google',' menubar=0, resizable=0,dependent=0,status=0,width=300,height=200,left=10,top=10')
+        }
+        </script>-->
+        <apex:pageBlock >
+         <apex:image alt="img" />
+        </apex:pageBlock>
+        <apex:pageBlock >
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="New Customer" action="{!newcustomer}"/>
+                <apex:commandButton value="View Customers" action="{!viewcustomers}"/>
+                <!--<apex:commandButton value="Search Customer" action="{!searchcustomer}"/>-->
+            </apex:pageBlockButtons>
+        </apex:pageBlock>    
+    </apex:form>
+</apex:page>

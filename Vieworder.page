@@ -1,0 +1,16 @@
+<apex:page showHeader="true" sidebar="true" lightningStylesheets="true" recordSetVar="orders" standardcontroller="Order__c" extensions="vieworders1">
+<apex:messages />
+    <apex:form ><apex:slds />
+    <apex:pageBlock id="pgplck">
+      <apex:pageBlockTable title="VIEW ORDERS" value="{!orders}" var="or" styleClass="slds-box slds-theme_shade slds-theme_alert-texture slds-table slds-table_bordered slds-max-medium-table_stacked-horizontal 
+    slds-text-title_caps slds-is-selected" style="margin-left:auto;margin-right:auto;width:780px;font-size: medium;text-align: center;margin-top: 18px;margin-bottom: 15px;">
+           <apex:column value="{!or.Name}" headerValue="Name" style="width:195px;" styleClass="slds-text-title_caps slds-is-selected"/>
+           <apex:column value="{!or.Menu__c}" headerValue="Menu" style="width:195px;" styleClass="slds-text-title_caps slds-is-selected"/>
+           <apex:column value="{!or.Quantity__c}" headerValue="Quantity" style="width:195px;" styleClass="slds-text-title_caps slds-is-selected"/>
+           <apex:column value="{!or.customer__c}" headerValue="Customer" style="width:195px;" styleClass="slds-text-title_caps slds-is-selected"/>  
+           <apex:column value="{!or.Invoice__c}" headerValue="Invoice" style="width:195px;" styleClass="slds-text-title_caps slds-is-selected"/>
+           <apex:column value="{!or.Price__c}" headerValue="Price" style="width:195px;" styleClass="slds-text-title_caps slds-is-selected"/>
+           <apex:column value="{!or.Amount__c}" headerValue="Total Amount" style="width:195px;" styleClass="slds-text-title_caps slds-is-selected"/>   
+       </apex:pageBlockTable>
+    </apex:pageBlock></apex:form>
+</apex:page>

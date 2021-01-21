@@ -1,0 +1,59 @@
+<apex:page sidebar="false" standardController="Order__c" extensions="ordercreationExt"
+           standardStylesheets="false" showHeader="true" >
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <apex:stylesheet value="{!URLFOR($Resource.style_resources, '/styles/salesforce-lightning-design-system.min.css')}" />
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js">script>
+            <script src='js/jquery-sortable.js'></script>
+                <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"/>
+                <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet"/>
+                <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+                <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+          </head>
+    <apex:form id="frm">
+        <script type= "text/javascript">
+        function fieldalert(){
+            var x = document.getElementById("{!$Component.frm.bl1.sec1.nm}").value;
+            if(x==''){
+                alert("Please enter your Name in Account Name field");
+            }
+            else{
+                alert("Do you really want to insert the new record with Name : "+x);    
+            }
+        }
+        </script>
+    <apex:pageBlock id="bl1">
+      <div class="slds"></div>
+        <apex:pageBlockSection id="sec1" title="Enter your details here" collapsible="false"><br/>
+            <div class="slds-form-element"><br/>
+               <div class="slds-form-element__control slds-p-bottom_xx-small slds-m-horizontal--x-small">
+                  <apex:inputField value="{!Order__c.Name}" id="nm"/>
+               </div>
+             </div>
+             <div class="slds-form-element">
+                <div class="slds-form-element__control slds-p-bottom_xx-small">
+                  <apex:inputField value="{!Order__c.Quantity__c}" id="qty"/>
+                </div>
+             </div>
+             <div class="slds-form-element">
+                <div class="slds-form-element__control slds-p-bottom_xx-small slds-m-left--x-small">
+                  <apex:inputField value="{!Order__c.Conformation__c}" id="cnf"/>
+                </div>
+             </div>
+            
+          </apex:pageBlockSection>
+           <div class="slds-modal__footer">
+             <apex:commandButton action="{!create}" value="Create" onclick="fieldalert" id="btn1"
+              styleClass="slds-p-top_xx-small slds-button slds-button--neutral slds-button__icon_left"
+                                 style="margin-right: 50%;"/>
+           </div>
+        </apex:pageBlock>
+    </apex:form>
+  </html>
+</apex:page>

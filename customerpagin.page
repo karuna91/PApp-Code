@@ -1,0 +1,56 @@
+<apex:page controller="CustomerListViewController" sidebar="false" lightningStylesheets="true">
+    <apex:slds />
+    <apex:form styleClass="slds-form-element slds-box slds-theme_shade" >
+        <!-- For alphabetic search-->
+        <div style="margin-left:700px;">
+            <apex:panelGrid >
+                <apex:repeat value="{!alphabet}" var="alph">
+                    <apex:commandLink value="{!alph} | " action="{!getalphaSearch}" reRender="table">
+                        <apex:param name="a" value="{!alph}" assignTo="{!alphaSearchConct}"/>
+                    </apex:commandLink>
+                </apex:repeat>
+            </apex:panelGrid>
+        </div>
+        <apex:PageBlock id="table">
+            <apex:PageBlockTable value="{!CustomerList}" var="customers" >
+                <apex:column headervalue="C_ID" value="{!customers.Id}" style="width: 225px;padding-left: 15px;border-style: ridge;
+                                                                               border-right-color:light grey;" ></apex:column>
+                <!--<apex:column headervalue="Name" value="{!customers.name}"></apex:column>-->
+                <apex:column headerValue="C_Name" value="{!customers.Customer_Name__c}"/>
+                <apex:column headerValue="Mobile" value="{!customers.Mobile__c}" style="width: 225px;padding-left: 15px;border-style: ridge;
+                                                                                        border-right-color:light grey;"/>
+                <apex:column headerValue="Email" value="{!customers.Email_Address__c}" style="width: 225px;padding-left: 15px;border-style: ridge;
+                                                                                              border-right-color:light grey;"/>
+                <apex:column headerValue="Address" value="{!customers.Address__c}" style="width: 225px;padding-left: 15px;border-style: ridge;
+                                                                                          border-right-color:light grey;"/>
+            </apex:PageBlockTable>
+            <!-- below code for pagination -->
+            <div align = "center" id="button" style="background-color:#fad1d1;height:40px;padding-top: 7px;">
+                <!-- To return to first page of records-->
+                <apex:commandButton action="{!stdSetController.first}" value="<<" title="First Page" disabled="{!!stdSetController.HasPrevious}" reRender="table,button"/>
+                <!-- To return to Previous page of records-->
+                <apex:commandButton action="{!stdSetController.previous}" value="<" disabled="{!!stdSetController.HasPrevious}" reRender="table,button"/>
+                <!-- To return to next page of records-->
+                <apex:commandButton action="{!stdSetController.next}" value=">" disabled = "{!!stdSetController.HasNext}" reRender="table,button"/>
+                <!-- To return to last page of records-->
+                <apex:commandButton action="{!stdSetController.last}" value=">>" title="Last Page" disabled="{!!stdSetController.HasNext}" reRender="table,button"/>
+                <!-- InputText to display current page and to navigate to any page number, At righmost side of page-->
+                <span style="float:right">
+                    <apex:outputLabel value="Page "></apex:outputLabel>
+                    <apex:InputText value="{!PageNumber}" maxLength="4" size="1"/>
+                    <!-- To navigate to the page-->           
+                    <apex:outputLabel value=" of {!TotalPages}"></apex:outputLabel>
+                </span>
+                <!-- To display a list for number of records to be selected per page-->
+                <span style = "float:left; margin-left: 2px;">
+                    <apex:SelectList value="{!RecordsPerPageslist}" size="1">
+                        <apex:selectOptions value="{!RecordsPerPageOptionList}">    
+                        </apex:selectOptions>
+                        <apex:actionSupport event="onchange" reRender="table"/>
+                    </apex:SelectList>
+                </span>
+            </div>
+            <!-- end of pagination -->
+        </apex:PageBlock>
+    </apex:form>
+</apex:page>

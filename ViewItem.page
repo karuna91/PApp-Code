@@ -1,0 +1,11 @@
+<apex:page showHeader="false" sidebar="false" recordSetVar="menus" standardController="Menu__c">
+    <apex:pageBlock >
+   <apex:pageBlockTable value="{!menus}" var="mn">
+        <apex:column value="{!mn.Name}" headerValue="Name"/>
+       <apex:column value="{!mn.Item_Name__c}" headerValue="Item Name"/>
+       <apex:column value="{!mn.Item_Type__c}" headerValue="Item Type"/>
+       <apex:column value="{!mn.Price__c}" headerValue="Price"/>
+       <apex:column value="{!mn.Item_Category__c}" headerValue="Item Category"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

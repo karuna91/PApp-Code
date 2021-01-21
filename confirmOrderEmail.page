@@ -1,0 +1,39 @@
+<apex:page standardController="Opportunity" extensions="OrderConfirmEmail" action="{!sendEmail}" >
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <style>
+                .head{
+                font-size:1.3em;
+                }
+                .slds-scope .slds-icon-standard-opportunity {
+                background-color: #7f8de1;
+                width: 35px;
+                height: 33px;
+                margin-right: 10px;
+                margin-top: 3px;
+                }
+                .wk_btn{
+                margin: 10px 45% !important;
+                }
+                
+            </style>
+        </head>
+        <script>
+        function goToOpp(){
+            window.open('/{!opId}', target="_self");
+        }
+        </script>
+        <apex:outputPanel rendered="{!isClassic}">
+            <apex:pageMessages ></apex:pageMessages>
+            <apex:variable id="opId" var="opId" value="{!opId}" /> 
+            <button onclick="goToOpp();" class="btn" style="margin-left:45%;">
+                OK
+            </button>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{! !isClassic}">
+            <apex:slds />
+            <apex:pageMessages ></apex:pageMessages>
+            <apex:variable var="opId" value="{!opId}" /> 
+        </apex:outputPanel>
+    </html>
+</apex:page>

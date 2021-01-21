@@ -1,0 +1,10 @@
+<apex:page controller="pizzastoremainpage" showHeader="false" sidebar="false" ><body>
+    <apex:form >
+        <apex:pageBlock id="pg">
+            <apex:pageBlockSection >
+                <apex:image url="{!imageURL}" style="width: 1040px;margin-top: -13px;margin-left: 80px;margin-right: auto;height: 380px;"/>
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+    </apex:form></body>
+</apex:page>

@@ -1,0 +1,100 @@
+<apex:page Controller="Controller_serachcustomers" showHeader="true" sidebar="false">
+    <html xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search" lang="en">
+        <script>
+        var phone = document.getElementById("{!$Component.frm.block.sec1.si1.grp.searchphone}").value;
+        var phoneNum = phone.replace(/[^\d]/g, '');
+        console.log('Phone Number',phoneNum);
+        if(phoneNum.length > 0 && phoneNum.length < 11) { alert("sure?"); return true;  }
+        </script>
+        
+        <apex:form styleClass="slds-form-element" id="frm">
+            <style>
+                body{margin:auto;}
+                .inner-addon { 
+                position: relative; 
+                }
+                
+                /* style icon */
+                .inner-addon .glyphicon {
+                position: absolute;
+                padding: 10px;
+                pointer-events: none;
+                }
+                
+                /* align icon */
+                .left-addon .glyphicon  { left:  0px;}
+                .right-addon .glyphicon { right: 0px;}
+                
+                /* add padding  */
+                .left-addon input  { padding-left:  30px; }
+                .right-addon input { padding-right: 30px; }
+            </style>
+            <apex:slds />
+            <body>
+                <div class="slds-box slds-theme_shade">
+                    <apex:pageBlock mode="edit" id="block" >
+                        <apex:actionPoller action="{!CounterMethod}" reRender="pgplck" interval="5"/>{!seconds }
+                        <apex:pageBlockSection id="sec1" >
+                            <apex:pageBlockSectionItem id="si1">
+                                <apex:outputLabel for="searchphone" style="font-size:medium; color:black;">Customer</apex:outputLabel>
+                                <apex:panelGroup id="grp" >
+                                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                                    <apex:inputText id="searchphone" value="{!searchphone}" styleClass="slds-input" style="width: 220px;" />
+                                    <apex:commandButton value="Search" action="{!doSearch}" rerender="block" status="status" style="width:100px;padding: inherit;font-size:14px;height: 32px;color:black;font-weight: bold;"
+                                                        styleClass="slds-button slds-button_neutral"/>
+                                    </div>
+                                </apex:panelGroup>
+                            </apex:pageBlockSectionItem>
+                        </apex:pageBlockSection>
+                        <apex:actionStatus id="status" startText="requesting..."/>
+                        <b><apex:pageBlockSection title="Results" id="results" columns="1">
+                            <apex:pageBlockTable value="{!results}" var="l" rendered="{!NOT(ISNULL(results))}" id="pgplck">
+                                <apex:column headerValue="Name">
+                                    <apex:outputlink value="/{!l.Id}">{!l.Name}</apex:outputlink>
+                                </apex:column>
+                                <apex:column headerValue="Name" value="{!l.name}"/>
+                                <apex:column headerValue="Customer Name" value="{!l.Customer_Name__c}"/>
+                                <apex:column headerValue="Email" value="{!l.Email_Address__c}"/>
+                                <apex:column headerValue="Address" value="{!l.Address__c}"/>
+                                <apex:column headerValue="Phone" >
+                                    <apex:outputlink value="/{!l.Id}">{!l.Mobile__c}</apex:outputlink>
+                                </apex:column>
+                                <!--<apex:column value="{!l.Mobile__c}"/>-->
+                            </apex:pageBlockTable>
+                            </apex:pageBlockSection></b>
+                    </apex:pageBlock>
+                    <apex:pageBlock >
+                        <apex:pageBlockSection >
+                            <apex:pageBlockSectionItem >
+                                <apex:outputLabel style="font-size:medium; color:black;">Order For Exsiting Customer</apex:outputLabel>
+                                <apex:panelGroup >
+                                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                                        <apex:commandLink action="{!orderplace}" target="_blank">
+                                            <apex:commandButton value="Order" style="width:100px;padding: inherit;font-size:14px;height: 32px;color:black;font-weight: bold;"
+                                                                styleClass="slds-button slds-button_neutral"/>
+                                        </apex:commandLink>
+                                    </div>
+                                </apex:panelGroup>
+                            </apex:pageBlockSectionItem>
+                        </apex:pageBlockSection>
+                    </apex:pageBlock>
+                    <apex:pageBlock >
+                        <apex:pageBlockSection >
+                            <apex:pageBlockSectionItem >
+                                <apex:outputLabel style="font-size:medium; color:black;">New Customer</apex:outputLabel>
+                                <apex:panelGroup >
+                                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                                        <apex:commandLink action="{!exsit}" target="_blank">
+                                            <apex:commandButton value="New Customer" style="width:100px;padding: inherit;font-size:14px;height: 32px;color:black;font-weight: bold;"
+                                                                styleClass="slds-button slds-button_neutral"/>
+                                        </apex:commandLink>
+                                    </div>
+                                </apex:panelGroup>
+                            </apex:pageBlockSectionItem>
+                        </apex:pageBlockSection>
+                    </apex:pageBlock>
+                </div>
+            </body>
+        </apex:form>
+    </html>
+</apex:page>

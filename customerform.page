@@ -1,0 +1,25 @@
+<apex:page standardStylesheets="true" sidebar="false" id="pg" StandardController="customer__c" extensions="customerform" showHeader="true">
+    <apex:includeScript value="{!$Resource.validate}"/>
+
+    <head>
+        <script language="Javascript" type="text/javascript">
+            function popup(url){
+                newwindow=window.open(url,'name','height=1200,width=1200');
+                if(window.focus){newwindow.focus()}
+                return false;
+            }
+            </script>
+    </head>
+    <apex:slds />
+    <apex:form id="fm1" styleClass="slds-form-element slds-box slds-theme_shade slds-theme_alert-texture">
+        <apex:pageBlock id="pb1" >
+            <apex:pageBlockSection collapsible="false" columns="1" id="ps1" title="Add New Customer Details Here" >
+                <apex:inputField value="{!cus.Name}" id="nm" required="true" styleClass="slds-form-element__control slds-input" style="width:200px;"/>
+                <apex:inputField value="{!cus.Address__c}" id="adr" styleClass="slds-form-element__control slds-input" style="width:200px;"/>
+                <apex:inputField value="{!cus.Email_Address__c}" id="em" required="true" styleClass="slds-form-element__control slds-textarea" style="width:200px;"/>
+                <apex:inputField value="{!cus.myfirstcontapp__Mobile__c }" id="ph" required="true" styleClass="slds-form-element__control slds-input" style="width:200px;"/>
+            </apex:pageBlockSection>
+            <apex:commandButton id="btn" action="{!create}" value="Create" onclick="popup('/apex/OrderdetailPage')"
+                                styleClass="slds-button slds-button_stateful slds-button_brand slds-is-selected"/>
+        </apex:pageBlock></apex:form>
+</apex:page>

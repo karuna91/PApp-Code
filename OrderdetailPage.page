@@ -1,0 +1,23 @@
+<apex:page controller="pickorder" showHeader="true" sidebar="false" lightningStylesheets="true">
+    <apex:slds />
+    <script language="Javascript" type="text/javascript">
+            function popup(url){
+                newwindow=window.open(url,'name','height=400,width=1100');
+                if(window.focus){newwindow.focus()}
+                return false;
+            }
+            </script>
+    <apex:form styleClass="slds-form-element slds-box slds-theme_shade slds-theme_alert-texture">
+        <apex:pageBlock >
+                    <apex:image value="{!$Resource.order}" style="height:400px;margin-top: -7px;margin-left: -1%;width:90%;"/>
+                    </apex:pageBlock>
+        <apex:pageBlock >
+            <apex:pageBlockButtons location="Bottom" >
+                <apex:commandLink action="{!Create}" target="_blank">
+                <apex:commandButton value="Create" style="margin-left: 200px;" styleClass="slds-button slds-button_stateful slds-button_brand slds-is-selected"/>
+                </apex:commandLink>
+                <apex:commandButton action="{!View}" value="View" styleClass="slds-button slds-button_stateful slds-button_brand slds-is-selected"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

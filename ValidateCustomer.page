@@ -1,0 +1,22 @@
+<apex:page showHeader="true" sidebar="false" applyBodyTag="true" controller="Controller_validatecustomer" >
+    <html>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <div class="container" style="overflow: auto;">
+            <apex:form styleClass="slds-form-element">
+                <apex:slds /><div class="slds-box slds-theme_shade slds-theme_alert-texture">
+                <apex:pageBlock >
+                  <apex:image value="{!$Resource.dominoz}" style="height:350px;margin-top: -7px;margin-left: -1%;width: 102%;"/>
+                </apex:pageBlock>
+                <apex:pageBlock >
+                    <apex:pageBlockButtons location="top" ><div class="slds-button-group" role="group">
+                        <apex:commandLink action="{!exsitingcustomers}" target="_blank">
+                            <apex:commandButton value="" styleclass="slds-button slds-button_stateful slds-button_brand slds-is-selected" style="background-image:url({!URLFOR($Resource.view)});
+                             background-position: center;background-repeat: no-repeat;height:100px;width:150px;"/>
+                        </apex:commandLink></div>
+                        </apex:pageBlockButtons>
+                </apex:pageBlock>
+                </div>
+            </apex:form></div></html>
+</apex:page>

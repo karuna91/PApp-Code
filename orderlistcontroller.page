@@ -1,0 +1,33 @@
+<apex:page standardController="Order__c" sidebar="false" showHeader="false" recordSetVar="orders">
+    <apex:form >
+        <apex:pageBlock id="pb1">
+            Filter:<apex:selectList value="{!filterid}" size="1">
+            <apex:selectOptions value="{!listViewOptions}"/>
+            <apex:actionSupport event="onchange" reRender="pb1"/>
+            </apex:selectList><br/><br/>
+            <apex:pageBlockTable value="{!orders}"  var="or" style="background-color:#F4ECF7; color:#2C3E50">
+                <apex:column headerValue="Name"     value="{!or.Name}"/>
+                <apex:column headerValue="Products" value="{!or.Product__c}"/>
+                <apex:column headerValue="Quantity" value="{!or.Quantity__c}"/>
+            </apex:pageBlockTable>
+         
+        <apex:panelGrid columns="5">
+            <apex:commandButton action="{!first}" value="|<"/>
+            <apex:commandButton action="{!Previous}" value="<" reRender="{!HasPrevious}"/>
+            <apex:commandButton action="{!next}" value=">"     reRender="{!Hasnext}"/>
+            <apex:commandButton action="{!last}" value=">|"/>
+            <apex:panelGroup >
+                <apex:outputText value="Records/page"></apex:outputText>
+                <apex:selectList size="1" value="{!pagesize}">
+                    <apex:selectOption itemValue="5" itemLabel="5"/>
+                	<apex:selectOption itemValue="10" itemLabel="10"/>
+            		<apex:selectOption itemValue="15" itemLabel="15"/>
+                </apex:selectList>
+                	<apex:commandButton action="{!null}" value="update page size"/>&nbsp;
+                <apex:outputText value="{!PageNumber} of {!CEILING(Resultsize/Pagesize)}"/>
+                
+            </apex:panelGroup>
+        </apex:panelGrid>
+            </apex:pageBlock>
+    </apex:form>
+</apex:page>

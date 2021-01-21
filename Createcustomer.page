@@ -1,0 +1,82 @@
+<apex:page standardStylesheets="true" sidebar="false" id="pg" showHeader="true"
+           standardController="customer__c" extensions="createcustomer">
+    <head>
+        <script language="Javascript" type="text/javascript">
+        function popup(url){
+            newwindow=window.open(url,'name','height=400,width=1100');
+            if(window.focus){newwindow.focus()}
+            return false;
+        }
+        /*function fieldalert(){
+                //var x = document.getElementById("{!$Component.pg.fm1.pb1.ps1.nm}").value;
+                        if(document.getElementById("{!$Component.pg.fm1.pb1.ps1.nm}").value==''){
+                            alert("Enter Customer Name please");
+                            return false;
+                        }
+                        else if(document.getElementById("{!$Component.pg.fm1.pb1.ps1.adr}").value==''){
+                            alert("Fill Address field");
+                            return false;
+                        }
+                        else if(document.getElementById("{!$Component.pg.fm1.pb1.ps1.em}").value==''){
+                            alert("Fill Address field");
+                            return false;
+                        }
+                        else if(document.getElementById("{!$Component.pg.fm1.pb1.ps1.ph}").value==''){
+                            alert("Fill Address field");
+                            return false;
+                        }
+                        else{
+                            alert("Are you sure");
+                            return true;
+                        }
+                    }*/
+        </script>
+        <style>#nm{font:size:large;}</style>
+    </head>
+    <apex:slds />
+    <apex:form id="fm1" styleClass="slds-form-element slds-box slds-theme_shade slds-theme_alert-texture">
+        <apex:messages />
+        <div class="slds-page-header__detail">
+            <h1 class="slds-page-header__title" title="Add New Customer Details Here">Add New Customer Details Here</h1><br/>            
+            <apex:pageBlock id="pb1">
+                <apex:pageBlockSection collapsible="false" columns="1" id="ps1">
+                    <apex:inputField label="Name" styleClass="slds-input" value="{!cus.Name}" id="nm" required="true" style="width: 210px;"/>
+                    <apex:inputField label="Address" styleClass="slds-input" value="{!cus.Address__c}" id="adr" required="true" style="width: 210px;"/>
+                    <apex:inputField label="Email" styleClass="slds-input" value="{!cus.Email_Address__c}" id="em" required="true" style="width: 210px;"/>
+                    <apex:inputField label="Mobile" styleClass="slds-input" value="{!cus.myfirstcontapp__Mobile__c }" required="true" id="ph" style="width: 210px;"/>
+                </apex:pageBlockSection>
+                    <apex:commandButton action="{!create}" id="btn1" value="Create" styleClass="slds-button slds-button_stateful slds-button_brand slds-is-selected"
+                       style="margin-left:40%;margin-top:0px;margin-bottom:2px;">
+                        <!--<apex:actionSupport oncomplete="closeSelf();"/>-->
+                    </apex:commandButton>
+                
+             </apex:pageBlock>
+            <apex:pageBlock id="pg">
+                <apex:pageblockSection id="ps1">
+                    <apex:pageblockSectionItem >Click for Order</apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >
+                        <apex:inputCheckbox value="{!customer__c.Confirm_for_Order__c}" id="chk">
+                            <apex:actionsupport event="onchange" reRender="pg"/>
+                        </apex:inputCheckbox>                
+                    </apex:pageblockSectionItem>
+                </apex:pageblockSection>
+                <apex:commandLink action="{!orderpage}" target="_blank" >
+                    <apex:commandButton id="btn2" value="Order" styleClass="slds-button slds-button_stateful slds-button_brand slds-is-selected"
+                       style="margin-left:40%;margin-top:0px;margin-bottom:2px;">
+                        <!--<apex:actionSupport oncomplete="closeSelf();"/>-->
+                     <script>
+                       document.getElementById('{!$Component.btn2}').disabled = {!IF(customer__c.Confirm_for_Order__c, false,true)};
+                    </script>
+                    </apex:commandButton></apex:commandLink>
+            </apex:pageBlock>
+        </div>
+                    <!--<apex:pageBlock >
+                    <apex:pageBlockTable value="{!customers}" var="customer" >
+                    <apex:column headerValue="Name"  value="{!customer.Name}"/>
+                    <apex:column headerValue="Mobile"  value="{!customer.Mobile__c}"/>
+                    <apex:column headerValue="Email"  value="{!customer.Email_Address__c}"/>
+                    <apex:column headerValue="Address" value="{!customer.Address__c}"/>                
+                    </apex:pageBlockTable>
+                    </apex:pageBlock>-->
+    </apex:form>
+</apex:page>

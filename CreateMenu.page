@@ -1,0 +1,39 @@
+<apex:page controller="CreateMenu" showHeader="true" sidebar="false" id="pg" lightningStylesheets="true">
+    
+    <apex:form id="frm"><div class="slds">
+        <!--<apex:pageBlock id="bl1">
+            <apex:pageBlockSection id="sec1" columns="1" title="ENTER YOUR DETAILS HERE" collapsible="false">
+            <apex:inputField value="{!mList.Item_Name__c}" id="nm"/>
+            <apex:inputField value="{!mList.Item_Type__c}" id="typ"/>
+            <apex:inputField value="{!mList.Price__c}" id="prc"/>
+            <apex:inputField value="{!mList.Item_Category__c}" id="ctgr"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="Bottom">
+                <apex:commandButton action="{!create}" value="Create" onclick="fieldalert()"/>
+                <!--<apex:actionFunction action="{!callme}" reRender="bl1" name="callmethod"/>-->
+            <!--</apex:pageBlockButtons>-->
+        <!--</apex:pageBlock>-->
+        <apex:pageBlock >
+            <apex:pageBlockSection collapsible="false" columns="1">
+                <apex:commandButton action="{!NewMenu}" value="New Menu" style="margin-left:47%;"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock >
+            <div class="slds-table slds-table_bordered slds-max-medium-table_stacked-horizontal slds-no-row-hover">
+             <apex:pageBlockTable value="{!menus}" var="Menu" styleclass="slds-table slds-table_bordered slds-max-medium-table_stacked-horizontal slds-no-row-hover">
+                <apex:column headerValue="Name" value="{!Menu.Name}" styleclass="slds-text-title_caps slds-is-selected"/>
+                <apex:column headerValue="I_Name" value="{!Menu.Item_Name__c}"/>
+                <apex:column headerValue="Category" value="{!Menu.Item_Category__c}"/>
+                <apex:column headerValue="Type" value="{!Menu.Item_Type__c}"/>
+                <apex:column headerValue="Price" value="{!Menu.Price__c}"/> 
+            </apex:pageBlockTable>
+                </div>
+        </apex:pageBlock>
+        <!--<apex:pageBlock>
+            <apex:pageBlockTable var="mnu" value="{!RecordFetching}" rendered="{!display}" id="tb1">
+            <apex:column value="{!mnu.Item_Name__c}"/>
+            <apex:column value="{!mnu.Item_Category__c}"/>
+            </apex:pageBlockTable>
+</apex:pageBlock>--></div>
+    </apex:form>
+</apex:page>

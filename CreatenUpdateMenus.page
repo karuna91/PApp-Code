@@ -1,0 +1,36 @@
+<apex:page standardController="Menu__c" extensions="menuext" showHeader="true">
+    <apex:form styleClass="slds-form-element slds-box slds-theme_shade slds-theme_alert-texture" id="frm">
+    <apex:slds />
+        <script>
+        function display1(){
+            alert("Are you sure");
+        }
+        </script>
+        <apex:pageBlock id="pg">
+            <apex:pageBlockSection columns="2" title="Enter your detail here" collapsible="false">
+                <apex:inputField value="{!Menu__c.Item_Name__c}" required="true" style="width: 200px;" styleClass="slds-input" html-placeholder="Enter the Item Name"/>
+                <apex:inputField value="{!Menu__c.Item_Type__c}" required="true" style="width: 200px;" styleClass="slds-input"/>
+                <apex:inputField value="{!Menu__c.Item_Category__c}" required="true" style="width: 200px;" styleClass="slds-input"/>
+                <apex:inputField value="{!Menu__c.Price__c}" required="true" style="width: 200px;" styleClass="slds-input" html-placeholder="Enter the Price"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom" id="pbb">
+                <apex:commandButton action="{!create}" id="btn1" value="Create" 
+                styleClass="slds-button slds-button_stateful slds-button_brand slds-is-selected"/>
+                <apex:commandLink target="_blank" action="{!showorder}">
+            	<apex:commandButton value="Customer" id="btn" styleClass="slds-button slds-button_stateful slds-button_brand slds-is-selected"/>
+            	<script>
+                    document.getElementById('{!$Component.btn}').disabled = {!IF(Menu__c.EnableButton__c, false,true)};
+                </script></apex:commandLink>
+            </apex:pageBlockButtons>
+            <apex:pageblockSection id="ps1">
+            <apex:pageblockSectionItem >Check it to view :</apex:pageblockSectionItem>
+            <apex:pageblockSectionItem >
+                <apex:inputCheckbox value="{!Menu__c.EnableButton__c}" id="chk">
+                    <apex:actionsupport event="onchange" reRender="pg"/>
+                </apex:inputCheckbox>                
+            </apex:pageblockSectionItem>
+        </apex:pageblockSection>
+        </apex:pageBlock>
+        
+   </apex:form>
+</apex:page>

@@ -1,0 +1,23 @@
+<apex:page sidebar="false" controller="Controller_orderform" standardStylesheets="false" showHeader="true">
+    <apex:slds />
+    <apex:form id="fm1" styleClass="slds-form-element slds-box slds-theme_shade slds-theme_alert-texture">
+        <div class="slds-page-header__detail">
+            <h1 class="slds-page-header__title" title="New Customer Order Details Here">New Customer Order Details Here</h1><br/>
+            <apex:pageBlock >
+                <apex:pageBlockSection >
+                    <apex:inputField style="width: 200px;" required="true" value="{!orders.Name}" styleClass="slds-required"></apex:inputField>
+                    <apex:inputField style="width: 200px;" required="true" value="{!orders.Quantity__c}"/>
+                    <apex:inputfield style="width: 200px;" required="true" value="{!orders.Price__c}"/>
+                    <apex:inputfield style="width: 200px;" required="true" value="{!orders.Menu__c}"/>
+                    <apex:inputField style="width: 200px;" required="true" value="{!orders.Invoice__c}"/>
+                    <apex:inputfield style="width: 200px;" required="true" value="{!orders.customer__c}"/>
+                    <apex:inputfield style="width: 200px;" required="true" value="{!orders.Amount__c}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockButtons location="bottom">
+                    <apex:commandButton styleClass="slds-button slds-button_stateful slds-button_brand slds-is-selected" accesskey=""
+                    value="Create" action="{!create}"/>
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+        </div>
+    </apex:form>
+</apex:page>
